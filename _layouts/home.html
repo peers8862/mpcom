@@ -1,0 +1,22 @@
+---
+layout: default
+---
+
+<div class="home-layout">
+  <div class="column-left">
+    <h2><b><a href="/updates">Updates</a></b></h2>
+    <ul>
+      {% for post in site.posts limit:5 %}
+        <li>
+          <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+          <span>{{ post.date | date: "%B %d, %Y" }}</span>
+        </li>
+      {% endfor %}
+      <p class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | relative_url }}">via RSS</a></p>
+    </ul>
+  </div>
+  <div class="column-right">
+    <h2>What is good growth?</h2>
+    <p>This is some content for the right column to show it's working.</p>
+  </div>
+</div>
