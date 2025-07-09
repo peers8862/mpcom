@@ -2,7 +2,7 @@
 layout: default
 nav_exclude: true
 title: Posts in "business"
-category: business
+categories: business
 ---
 
 <h1>Business</h1>

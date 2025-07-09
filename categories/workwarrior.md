@@ -2,7 +2,7 @@
 layout: default
 nav_exclude: true
 title: Posts in "workwarrior"
-category: workwarrior
+categories: workwarrior
 ---
 
 <h1>Workwarrior</h1>

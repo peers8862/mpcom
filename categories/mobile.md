@@ -2,7 +2,7 @@
 layout: default
 nav_exclude: true
 title: Posts in "mobile"
-category: mobile
+categories: mobile
 ---
 
 <h1>Mobile</h1>

@@ -2,7 +2,7 @@
 layout: default
 nav_exclude: true
 title: Posts in "Heartland"
-category: heartland
+categories: heartland
 ---
 
 <h1>Heartland</h1>

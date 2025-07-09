@@ -2,7 +2,7 @@
 layout: default
 nav_exclude: true
 title: Posts in "systems"
-category: systems
+categories: systems
 ---
 
 <h1>Systems</h1>

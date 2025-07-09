@@ -2,7 +2,7 @@
 layout: default
 nav_exclude: true
 title: Posts in "workpads"
-category: workpads
+categories: workpads
 ---
 
 <h1>Workpads</h1>

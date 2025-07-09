@@ -2,7 +2,7 @@
 layout: default
 nav_exclude: true
 title: Posts in "regions"
-category: regions
+categories: regions
 ---
 
 <h1>Regions</h1>

@@ -2,7 +2,7 @@
 layout: default
 nav_exclude: true
 title: Posts in "projects"
-category: projects
+categories: projects
 ---
 
 <h1>Projects</h1>

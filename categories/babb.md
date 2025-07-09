@@ -2,7 +2,7 @@
 layout: default
 nav_exclude: true
 title: Posts in "babb"
-category: babb
+categories: babb
 ---
 
 <h1>Babb</h1>
