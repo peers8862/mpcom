@@ -56,4 +56,4 @@ A mobile app for managing a variety of work relationships, based on debts & cash
 
 That's a brief overview of how I got to the point of outlining and wrestling with the problem but here is what I discovered in detail after 5 years as a mobile proprietor who organized and performed jobs while playing every other role including sales and payroll.
 
-
+COMPLETE PART TWO
