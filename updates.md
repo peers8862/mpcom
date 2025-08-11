@@ -11,7 +11,7 @@ permalink: /updates/
   <ul>
     {% for post in site.posts limit:300 %}      <li>
         <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
-        <span>{{ post.date | date: "%B }}</span>
+        <span>{{ post.date | date: "%B %d, %Y" }}</span>
       </li>
     {% endfor %}
     <p class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | relative_url }}">via RSS</a></p>
