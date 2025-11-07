@@ -1,8 +1,10 @@
 ---
 layout: post
 title:  "Where to from here?"
-date:   2025-07-08 01:07:17 -0400
+date:   2025-06-08 01:07:17 -0400
 categories: business mobile
+image: /assets/images/windsor-riverside.jpeg # REQUIRED for the image to show
+caption: Optional caption for the image below the picture
 ---
 Why the Carpenter of all people? Why has this new period of mobile innovations fallen at the feet of this unexpecting persona? And to the Tradesman more broadly speaking? Why are the Last Adopters of today’s great tools in fact the herald of the Second Mobile Age? And how can we best serve them using fresh thinking?
 
