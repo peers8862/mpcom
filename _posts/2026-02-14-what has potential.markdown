@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "What has potential?"
-date:   2026-02-14 01:07:17 -0400
+date:   2026-02-13 01:07:17 -0400
 categories: journals computing
 ---
  
@@ -15,4 +15,4 @@ It is not specific jobs or industries which are now setting, it is a whole broad
 
 Coupled with the need to keep living is our renewed need to keep producing and also creating novel solutions to the insatiable impulse to produce. Solutions which can extend and expand opportunities for living in old and new places. The arm became augmented by the windmill, by steam, coal and then by our system of wires. Now, as the coal empires find new footing, AI is empowering vast new possibilities for society and industry. Democratized expertise is enabling millions of minds to channel wind at the sails adding to the directs that everything is taking. 
 
-The goods and services needed for life and work in all there aspects are if anything exploding. Meanwhile the leveers to directly influence and intervene in the new great experiment, though seemingly countless, are but few in number when looked at from a physical standpoint. The opportunity for Babb and new companies like it centers on a simple level poorly understood by the public but of foremost priority to today's engineer, the microcontroller or in common terms as it will surely by forever known, the microcomputer.
+The goods and services needed for life and work in all there aspects are if anything exploding. Meanwhile the leveers to directly influence and intervene in the new great experiment, though seemingly countless, are but few in number when looked at from a physical standpoint. The opportunity for Babb and new companies like it centers on a simple level poorly understood by the public but of foremost priority to today's engineer, the microcontroller or in common terms as it will surely be forever known, the microcomputer.
