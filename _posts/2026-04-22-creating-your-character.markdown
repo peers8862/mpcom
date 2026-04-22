@@ -2,7 +2,7 @@
 layout: post
 title:  "Create Your Character"
 date:   2026-04-22 10:07:17 -0500
-categories: bitpads
+categories: tools, babb, heybabb
 ---
 
 # Company-Character: Give Your Organization a Terminal Voice
