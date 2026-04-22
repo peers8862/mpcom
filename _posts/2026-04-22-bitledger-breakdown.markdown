@@ -2,7 +2,7 @@
 layout: post
 title:  "Bitpads Breakdown"
 date:   2026-04-22 10:07:17 -0500
-categories: tools, babb, bitpads
+categories: tools babb bitpads
 ---
 
 ## BitLedger: A 40-Bit Protocol for Financial Transactions

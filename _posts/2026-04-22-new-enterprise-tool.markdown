@@ -2,7 +2,7 @@
 layout: post
 title:  "Tool for Planning New Enterprises"
 date:   2026-04-22 10:07:17 -0500
-categories: tools, babb, newent
+categories: tools babb newent
 ---
 
 ## newent v2: A Local-First CLI for Designing New Enterprises

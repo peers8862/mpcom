@@ -2,7 +2,7 @@
 layout: post
 title:  "BASICS Standard Explained"
 date:   2026-04-22 10:07:17 -0500
-categories: standards, babb, readmes
+categories: standards babb readmes
 ---
 
 # BASICS

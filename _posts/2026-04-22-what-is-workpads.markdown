@@ -2,7 +2,7 @@
 layout: post
 title:  "Workpads as Autonomous System"
 date:   2026-04-22 10:07:17 -0500
-categories: tools, babb, workpads
+categories: tools babb workpads
 ---
 
 ## Workpads: A Job Record System Designed for Real-World Constraints

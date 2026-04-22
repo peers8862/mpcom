@@ -4,7 +4,7 @@ title:  "Living the Problems"
 date:   2025-06-08 01:07:17 -0400
 categories: workpads
 image: /assets/images/posts/livingtheproblem/windsor-riverside.jpeg
-caption: Windsor, Ontario
+caption: Windsor Ontario
 ---
 
 My deep dive into the world of trades and skilled labor began in fits and starts, but it kept going many years because of our newlywed necessities. Baby #1 was inbound! What started off as a survival "strategy" slowly became, month by month and year by year, a deliberate and structured study of the administrative challenges faced by sole proprietors, especially those whose truck dashboard is their desk. 

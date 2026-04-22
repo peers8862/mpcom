@@ -2,7 +2,7 @@
 layout: post
 title:  "What is Babb about?"
 date:   2026-04-22 10:07:17 -0500
-categories: tools, babb, readmes
+categories: tools babb readmes
 ---
 
 # Babb Works
