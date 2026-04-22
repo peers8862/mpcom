@@ -29,6 +29,7 @@ theme: minima
 header_pages:
 - about.md
 - projects.md
+- firmware-benchmarking.md
 plugins:
   - jekyll-feed
 
