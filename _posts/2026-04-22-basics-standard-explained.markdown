@@ -54,6 +54,7 @@ BASICS is not:
 The strongest argument for BASICS is operational continuity.
 
 Organizations do not fail because they lack features; they fail when core records, commands, and workflows become unreliable, opaque, or non-portable across changing constraints.
+
 BASICS prioritizes continuity by requiring:
 
 - explicit and stable command semantics
@@ -61,8 +62,6 @@ BASICS prioritizes continuity by requiring:
 - interoperable schema evolution rules
 - conformance evidence instead of claims
 - long-lived references for deviations and policy decisions
-
-This makes BASICS valuable for both small tools and industrial systems.
 
 ## Mission
 
@@ -80,16 +79,24 @@ BASICS helps teams build interoperable tools that preserve operator command and 
 
 BASICS uses a layered architecture so products can implement only what they need while remaining compatible.
 
-1. Shared Core
-   - universal rule set for commands, records, interoperability, versioning, governance, and evidence
-2. Software Profile
-   - local-first mutation, sync/conflict handling, secure SDLC, supply-chain transparency
-3. Hardware Profile
-   - manufacturing lifecycle controls, testability, serviceability, device capability declarations
-4. Firmware Profile
-   - secure updates, trust-role separation, recovery guarantees, firmware provenance
-5. Operational Extensions
-   - optional modules and tool-specific behavior registered through formal deviation and conformance pathways
+1. Shared Core  
+   - universal rule set for commands, records, interoperability, versioning, governance, and evidence  
+   → [Shared Core Standard](https://github.com/babbworks/basics-standard/blob/main/standards/shared-core.md)
+
+2. Software Profile  
+   - local-first mutation, sync/conflict handling, secure SDLC, supply-chain transparency  
+   → [Software Profile](https://github.com/babbworks/basics-standard/blob/main/standards/software-profile.md)
+
+3. Hardware Profile  
+   - manufacturing lifecycle controls, testability, serviceability, device capability declarations  
+   → [Hardware Profile](https://github.com/babbworks/basics-standard/blob/main/standards/hardware-profile.md)
+
+4. Firmware Profile  
+   - secure updates, trust-role separation, recovery guarantees, firmware provenance  
+   → [Firmware Profile](https://github.com/babbworks/basics-standard/blob/main/standards/firmware-profile.md)
+
+5. Operational Extensions  
+   - optional modules and tool-specific behavior registered through formal deviation and conformance pathways  
 
 ## Conformance Architecture
 
@@ -97,108 +104,112 @@ Conformance is intentional and progressive.
 
 ### Tiers
 
-- Core
-  - baseline command contract, local record operations, and interoperability declarations
-- Field
-  - constrained/degraded behavior evidence and conflict/sync reliability proof
-- Industrial
-  - security lifecycle rigor and publishable conformance evidence reviewed by Babb and partner where delegated
+- Core  
+  - baseline command contract, local record operations, interoperability declarations  
+  → [Conformance Checklist](https://github.com/babbworks/basics-standard/blob/main/standards/conformance-checklist.md)
+
+- Field  
+  - constrained/degraded behavior evidence and conflict/sync reliability proof  
+
+- Industrial  
+  - security lifecycle rigor and publishable conformance evidence  
 
 ### Scoring Model
 
 - mandatory requirements are pass/fail
 - optional controls use maturity scoring
 
-This enables strict minimum guarantees while still rewarding gradual hardening.
-
 ## Governance Architecture
 
 BASICS governance balances speed and stability.
 
 - proposal + community review
-- targeted 100-day lifecycle from draft to ratification decision
-- trial implementation before mandatory adoption where appropriate
+- 100-day lifecycle target for ratification decisions
+- trial implementation before adoption
 - published migration impact for accepted changes
-- requirement sunset only with overlap and explicit replacement path
+- explicit sunset rules with replacement paths
 
-This keeps the standard adaptive without destabilizing implementers.
+→ [Adoption Playbook](https://github.com/babbworks/basics-standard/blob/main/ADOPTION.md)
 
 ## Interoperability Architecture
 
-BASICS treats interoperability as an engineering system, not a vague aspiration.
-
 - command classes are normalized
-- event and schema contracts are versioned
+- schema contracts are versioned
 - additive evolution is default
-- unknown non-critical extensions are safely ignored
-- unknown critical extensions fail clearly and safely
-- extension points are exercised in tests to prevent protocol ossification
-
-The result is compatibility that can evolve without freezing.
+- unknown non-critical extensions are ignored safely
+- unknown critical extensions fail safely
+- extension points are test-covered to prevent ossification
 
 ## Trust and Evidence Architecture
 
-Claims are not enough.
-BASICS requires machine-checkable and human-auditable evidence:
+BASICS requires verifiable artifacts:
 
-- command and schema specs
+- specifications and schemas
 - ADR history
-- degraded-mode matrix
+- degraded-mode matrices
 - tier test outputs
-- SBOM/provenance where profile requires it
-- registered deviations with durable identifiers and long-lived links
+- SBOM/provenance (where applicable)
+- registered deviations with persistent identifiers
 
-This turns compliance from narrative into verifiable state.
+→ [Deviation Registry](https://github.com/babbworks/basics-standard/blob/main/standards/deviation-registry.md)
 
 ## Why This Should Last
 
-BASICS is built around durable design choices:
-
 - explicit command semantics
-- local-first continuity for core records
-- profile-based expansion rather than monolithic scope
-- stable rule IDs and citation-backed policy lineage
-- backward compatibility orientation down to the simplest supported profile
-
-The goal is not to lock the ecosystem in place.
-The goal is to let it evolve without breaking the operational spine.
+- local-first continuity
+- profile-based expansion
+- stable rule identifiers
+- backward compatibility orientation
 
 ## Reference Implementation Direction
 
-`workpads` is the current proof product for hardening BASICS in practice.
-It is the first place where rule clarity, conformance mechanics, and profile boundaries should be stress-tested and improved.
+`workpads` is the current proof system for validating BASICS behavior under real constraints.
 
 ## Standards Set v0.1.1
 
-- [Shared Core Standard](standards/shared-core.md)
-- [Software Profile](standards/software-profile.md)
-- [Hardware Profile](standards/hardware-profile.md)
-- [Firmware Profile](standards/firmware-profile.md)
-- [Deviation Registry](standards/deviation-registry.md)
-- [Conformance Checklist](standards/conformance-checklist.md)
-- [Rule Index](standards/rule-index.md)
-- [Adoption Playbook](ADOPTION.md)
+- [Shared Core Standard](https://github.com/babbworks/basics-standard/blob/main/standards/shared-core.md)
+- [Software Profile](https://github.com/babbworks/basics-standard/blob/main/standards/software-profile.md)
+- [Hardware Profile](https://github.com/babbworks/basics-standard/blob/main/standards/hardware-profile.md)
+- [Firmware Profile](https://github.com/babbworks/basics-standard/blob/main/standards/firmware-profile.md)
+- [Deviation Registry](https://github.com/babbworks/basics-standard/blob/main/standards/deviation-registry.md)
+- [Conformance Checklist](https://github.com/babbworks/basics-standard/blob/main/standards/conformance-checklist.md)
+- [Rule Index](https://github.com/babbworks/basics-standard/blob/main/standards/rule-index.md)
+- [Adoption Playbook](https://github.com/babbworks/basics-standard/blob/main/ADOPTION.md)
 
 ## How to Use This Repository
 
-1. Start with [Shared Core Standard](standards/shared-core.md).
-2. Apply profile documents that match your system footprint.
-3. Review [Rule Index](standards/rule-index.md) for implementation mapping.
-4. Use [Conformance Checklist](standards/conformance-checklist.md) for assessment.
-5. Register deviations in [Deviation Registry](standards/deviation-registry.md) when needed.
+1. Start with Shared Core Standard  
+2. Apply relevant profiles  
+3. Review Rule Index  
+4. Run Conformance Checklist  
+5. Register deviations when required  
 
 ## External Guidance Baseline
 
-BASICS rules are grounded in established guidance families, including:
-
-- ISO/IEC quality and architecture standards
-- IETF protocol extensibility and lifecycle guidance
-- NIST secure development and resilience frameworks
-- SBOM and supply-chain provenance practices
-- constrained/offline architecture guidance for real-world deployment conditions
+- ISO/IEC architecture and quality standards  
+- IETF extensibility and protocol design principles  
+- NIST secure development lifecycle guidance  
+- SBOM and supply-chain provenance standards  
+- offline-first and constrained-device design practices  
 
 ## Status
 
-This repository is in active drafting.
-v0.1.1 establishes stable rule identifiers, profile boundaries, and citation-backed obligations.
-Future revisions will continue through proposal, trial, and review cycles.
+Active drafting repository.
+v0.1.1 establishes rule identifiers, profile boundaries, and conformance structure.
+Future changes follow proposal → trial → review cycles.
+```
+
+---
+
+## Notes (non-exhaustive uncertainty points)
+
+* I assumed:
+
+  * `/standards/*.md` exists at repo root under `standards/`
+  * `ADOPTION.md` is root-level
+* If your repo differs (e.g. `docs/standards/` or `spec/`), these links should be adjusted.
+
+If you want, I can next:
+
+* validate the repo structure precisely
+* or generate a **link checker script (CI-safe)** for future posts
