@@ -38,7 +38,7 @@ permalink: /updates/
     <ul>
       {% for category in site.categories %}
         <li>
-          <a href="{{ site.baseurl }}/categories/{{ category[0] | slugify }}/">
+          <a href="{{ site.baseurl }}/categories/{{ category[0] | slugify: 'default' }}/">
             {{ category[0] }} ({{ category[1].size }})
           </a>
         </li>

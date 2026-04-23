@@ -1,0 +1,14 @@
+name: Personal
+version: 1.0.0
+schema: v1
+
+models:
+  - name: Personal Pro
+    provider: gemini
+    model: gemini-3.1-pro-preview
+    apiKey: ${{ secrets.secret_PERS_GEM_PRO }}
+
+  - name: Personal Flash
+    provider: gemini
+    model: gemini-2.5-flash
+    apiKey: ${{ secrets.secret_PERS_GEM_FLASH }}
