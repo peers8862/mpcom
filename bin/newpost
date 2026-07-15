@@ -1,0 +1,137 @@
+#!/usr/bin/env bash
+# bin/newpost — Generate a new Jekyll post for mpcom
+set -euo pipefail
+
+POSTS_DIR="$(cd "$(dirname "$0")/.." && pwd)/_posts"
+
+# --- Gather metadata ---
+read -rp "Title: " TITLE
+SLUG=$(echo "$TITLE" | tr '[:upper:]' '[:lower:]' | sed 's/[^a-z0-9]/-/g' | sed 's/--*/-/g' | sed 's/^-//;s/-$//')
+DATE=$(date +%Y-%m-%d)
+DATETIME=$(date +"%Y-%m-%d %H:%M:%S %z")
+
+read -rp "Categories (space-separated) []: " CATEGORIES
+read -rp "Image path (blank for none): " IMAGE
+
+CAPTION=""
+if [[ -n "$IMAGE" ]]; then
+  read -rp "Caption: " CAPTION
+fi
+
+FILENAME="${POSTS_DIR}/${DATE}-${SLUG}.markdown"
+
+# --- Preface (optional, asked early) ---
+echo ""
+read -rp "Add a preface? (brief intro shown before main content) [y/N]: " ADD_PREFACE
+PREFACE=""
+if [[ "$ADD_PREFACE" =~ ^[Yy]$ ]]; then
+  echo "Type preface (Ctrl-D to finish):"
+  PREFACE=$(cat)
+fi
+
+# --- Build front matter ---
+if [[ -n "$IMAGE" ]]; then
+  FRONTMATTER="---
+layout: post
+title:  \"${TITLE}\"
+date:   ${DATETIME}
+categories: ${CATEGORIES}
+image: ${IMAGE}
+caption: ${CAPTION}
+---"
+else
+  FRONTMATTER="---
+layout: post
+title:  \"${TITLE}\"
+date:   ${DATETIME}
+categories: ${CATEGORIES}
+---"
+fi
+
+# --- Helper: write front matter + preface to file ---
+write_header() {
+  echo "$FRONTMATTER" > "$FILENAME"
+  if [[ -n "$PREFACE" ]]; then
+    printf "\n%s\n\n---\n" "$PREFACE" >> "$FILENAME"
+  else
+    printf "\n" >> "$FILENAME"
+  fi
+}
+
+# --- Helper: prompt for preface if skipped earlier ---
+ask_preface_again() {
+  if [[ -z "$PREFACE" ]]; then
+    echo ""
+    read -rp "Content is set. Add a preface now? [y/N]: " ADD_PREFACE_LATE
+    if [[ "$ADD_PREFACE_LATE" =~ ^[Yy]$ ]]; then
+      echo "Type preface (Ctrl-D to finish):"
+      PREFACE=$(cat)
+    fi
+  fi
+}
+
+# --- Body content ---
+echo ""
+echo "How do you want to add body content?"
+echo "  1) Paste/type directly (end with Ctrl-D on empty line)"
+echo "  2) Open in nano"
+echo "  3) Open in Sublime Text"
+echo "  4) Open in Obsidian (creates file, opens vault)"
+echo "  5) Empty (just create the file)"
+echo "  6) Import from a file (markdown or text)"
+read -rp "Choice [1-6]: " CHOICE
+
+case "$CHOICE" in
+  1)
+    echo "Type or paste content below (Ctrl-D to finish):"
+    BODY=$(cat)
+    ask_preface_again
+    write_header
+    printf "%s\n" "$BODY" >> "$FILENAME"
+    echo "Created: $FILENAME"
+    ;;
+  2)
+    ask_preface_again
+    write_header
+    nano "$FILENAME"
+    echo "Created: $FILENAME"
+    ;;
+  3)
+    ask_preface_again
+    write_header
+    subl --wait "$FILENAME"
+    echo "Created: $FILENAME"
+    ;;
+  4)
+    ask_preface_again
+    write_header
+    ENCODED_PATH=$(python3 -c "import urllib.parse, sys; print(urllib.parse.quote(sys.argv[1]))" "$FILENAME")
+    open "obsidian://open?path=${ENCODED_PATH}" 2>/dev/null || \
+      xdg-open "obsidian://open?path=${ENCODED_PATH}" 2>/dev/null
+    echo "Created: $FILENAME (opened in Obsidian)"
+    read -rp "Press Enter when done editing in Obsidian..."
+    echo "Done."
+    ;;
+  5)
+    ask_preface_again
+    write_header
+    echo "Created: $FILENAME"
+    ;;
+  6)
+    read -rp "Path to file: " SRCFILE
+    SRCFILE="${SRCFILE/#\~/$HOME}"
+    if [[ ! -f "$SRCFILE" ]]; then
+      echo "Error: File not found: $SRCFILE"
+      exit 1
+    fi
+    ask_preface_again
+    write_header
+    cat "$SRCFILE" >> "$FILENAME"
+    echo "Created: $FILENAME (imported from $SRCFILE)"
+    ;;
+  *)
+    echo "Invalid choice. Creating empty post."
+    write_header
+    echo "Created: $FILENAME"
+    ;;
+esac
