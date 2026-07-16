@@ -16,7 +16,7 @@
 title: morgenpeers.com
 email: morgenpeers@outlook.com
 description: >- # this means to ignore newlines until "baseurl:"
-  An object is frequently not seen, from not knowing how to see it, rather than from any defect of the organ of vision.
+  An object is frequently not seen, from not knowing how to see it, rather than from any defect of the organ of vision. -Charles Babbage
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "morgenpeers.com" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: peers8862
@@ -28,6 +28,7 @@ markdown: kramdown
 theme: minima
 header_pages:
 - about.md
+- services.md
 - projects.md
 - firmware-benchmarking.md
 plugins:

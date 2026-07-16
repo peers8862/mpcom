@@ -18,6 +18,18 @@ if [[ -n "$IMAGE" ]]; then
   read -rp "Caption: " CAPTION
 fi
 
+read -rp "URL (user/repo for GitHub, full link, or blank): " URL_INPUT
+URL=""
+if [[ -n "$URL_INPUT" ]]; then
+  if [[ "$URL_INPUT" =~ ^https?:// ]]; then
+    URL="$URL_INPUT"
+  elif [[ "$URL_INPUT" =~ ^[^/]+/[^/]+$ ]]; then
+    URL="https://github.com/${URL_INPUT}"
+  else
+    URL="$URL_INPUT"
+  fi
+fi
+
 FILENAME="${POSTS_DIR}/${DATE}-${SLUG}.markdown"
 
 # --- Preface (optional, asked early) ---
@@ -30,32 +42,45 @@ if [[ "$ADD_PREFACE" =~ ^[Yy]$ ]]; then
 fi
 
 # --- Build front matter ---
+FM_LINES="---
+layout: post
+title:  \"${TITLE}\"
+date:   ${DATETIME}
+categories: ${CATEGORIES}"
+
 if [[ -n "$IMAGE" ]]; then
-  FRONTMATTER="---
-layout: post
-title:  \"${TITLE}\"
-date:   ${DATETIME}
-categories: ${CATEGORIES}
+  FM_LINES="${FM_LINES}
 image: ${IMAGE}
-caption: ${CAPTION}
----"
-else
-  FRONTMATTER="---
-layout: post
-title:  \"${TITLE}\"
-date:   ${DATETIME}
-categories: ${CATEGORIES}
----"
+caption: ${CAPTION}"
 fi
+
+if [[ -n "$URL" ]]; then
+  FM_LINES="${FM_LINES}
+url: ${URL}"
+fi
+
+FRONTMATTER="${FM_LINES}
+---"
 
 # --- Helper: write front matter + preface to file ---
 write_header() {
   echo "$FRONTMATTER" > "$FILENAME"
   if [[ -n "$PREFACE" ]]; then
-    printf "\n%s\n\n---\n" "$PREFACE" >> "$FILENAME"
+    printf "\n%s\n\n---\n\n\n" "$PREFACE" >> "$FILENAME"
   else
     printf "\n" >> "$FILENAME"
   fi
+}
+
+# --- Helper: convert raw URLs in file to markdown links ---
+# Skips URLs already inside markdown link syntax [...](...) or front matter
+# Strips trailing punctuation (.,:;!?) from captured URLs
+linkify() {
+  sed -i -E '
+    /^---$/,/^---$/b
+    /\[.*\]\(https?:\/\//b
+    s|(https?://[^ )<>]+[^. )<>,;:!?])([.,;:!?])?|[\1](\1)\2|g
+  ' "$FILENAME"
 }
 
 # --- Helper: prompt for preface if skipped earlier ---
@@ -88,18 +113,21 @@ case "$CHOICE" in
     ask_preface_again
     write_header
     printf "%s\n" "$BODY" >> "$FILENAME"
+    linkify
     echo "Created: $FILENAME"
     ;;
   2)
     ask_preface_again
     write_header
     nano "$FILENAME"
+    linkify
     echo "Created: $FILENAME"
     ;;
   3)
     ask_preface_again
     write_header
     subl --wait "$FILENAME"
+    linkify
     echo "Created: $FILENAME"
     ;;
   4)
@@ -110,6 +138,7 @@ case "$CHOICE" in
       xdg-open "obsidian://open?path=${ENCODED_PATH}" 2>/dev/null
     echo "Created: $FILENAME (opened in Obsidian)"
     read -rp "Press Enter when done editing in Obsidian..."
+    linkify
     echo "Done."
     ;;
   5)
@@ -127,6 +156,7 @@ case "$CHOICE" in
     ask_preface_again
     write_header
     cat "$SRCFILE" >> "$FILENAME"
+    linkify
     echo "Created: $FILENAME (imported from $SRCFILE)"
     ;;
   *)
