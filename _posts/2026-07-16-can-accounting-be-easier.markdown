@@ -2,7 +2,7 @@
 layout: post
 title:  "Can accounting be easier?"
 date:   2026-07-16 05:44:31 -0400
-categories: accounting, command line
+categories: accounting command-line
 url: https://github.com/peers8862/pairs
 ---
 
