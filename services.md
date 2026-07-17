@@ -4,6 +4,7 @@ title: Services
 permalink: /services/
 ---
 
+
 ## AI Beyond the Browser
 
 Direct personal assistance for small and medium business owners and their partners who are ready to move past chatbots and web apps into advanced, hands-on AI usage. We work with you one-on-one to pursue the Automated Enterprise—building digital work processes grounded in messaging, where AI agents handle scheduling, invoicing, reporting, and coordination so you can focus on decisions and relationships rather than screens and clicks.

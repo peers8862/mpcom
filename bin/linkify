@@ -1,0 +1,37 @@
+#!/usr/bin/env bash
+# bin/linkify — Convert raw URLs to markdown links in a post
+# Usage: bin/linkify _posts/2026-07-16-my-post.markdown
+#        bin/linkify   (no args = pick from recent posts)
+set -euo pipefail
+
+POSTS_DIR="$(cd "$(dirname "$0")/.." && pwd)/_posts"
+
+if [[ $# -ge 1 ]]; then
+  TARGET="$1"
+else
+  echo "Recent posts:"
+  mapfile -t POSTS < <(ls -t "$POSTS_DIR"/*.markdown 2>/dev/null | head -10)
+  for i in "${!POSTS[@]}"; do
+    echo "  $((i + 1))) $(basename "${POSTS[$i]}")"
+  done
+  read -rp "Pick a post [1-${#POSTS[@]}]: " PICK
+  INDEX=$((PICK - 1))
+  if [[ $INDEX -lt 0 || $INDEX -ge ${#POSTS[@]} ]]; then
+    echo "Invalid selection."
+    exit 1
+  fi
+  TARGET="${POSTS[$INDEX]}"
+fi
+
+if [[ ! -f "$TARGET" ]]; then
+  echo "Error: File not found: $TARGET"
+  exit 1
+fi
+
+sed -i -E '
+  /^---$/,/^---$/b
+  /\[.*\]\(https?:\/\//b
+  s|(https?://[^ )<>]+[^. )<>,;:!?])([.,;:!?])?|[\1](\1)\2|g
+' "$TARGET"
+
+echo "✓ Linkified: $TARGET"

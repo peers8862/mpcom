@@ -10,8 +10,60 @@ SLUG=$(echo "$TITLE" | tr '[:upper:]' '[:lower:]' | sed 's/[^a-z0-9]/-/g' | sed 
 DATE=$(date +%Y-%m-%d)
 DATETIME=$(date +"%Y-%m-%d %H:%M:%S %z")
 
-read -rp "Categories (space-separated) []: " CATEGORIES
-CATEGORIES=$(echo "$CATEGORIES" | tr ',' ' ' | tr -s ' ')
+read -rp "Categories — type your own or pick from existing? [t/p]: " CAT_MODE
+
+# Gather existing categories from all posts
+mapfile -t ALL_CATS < <(grep -h '^categories:' "$POSTS_DIR"/*.markdown 2>/dev/null \
+  | sed 's/^categories:[[:space:]]*//' \
+  | tr ' ' '\n' \
+  | sort -u \
+  | grep -v '^$')
+
+SELECTED_CATS=()
+
+if [[ "$CAT_MODE" =~ ^[Pp]$ && ${#ALL_CATS[@]} -gt 0 ]]; then
+  AVAILABLE_CATS=("${ALL_CATS[@]}")
+  while true; do
+    echo "Existing categories:"
+    for i in "${!AVAILABLE_CATS[@]}"; do
+      echo "  $((i + 1))) ${AVAILABLE_CATS[$i]}"
+    done
+    read -rp "Pick a number or type a category: " CAT_INPUT
+    # Check if input is a number referencing the list
+    if [[ "$CAT_INPUT" =~ ^[0-9]+$ ]] && [[ "$CAT_INPUT" -ge 1 ]] && [[ "$CAT_INPUT" -le ${#AVAILABLE_CATS[@]} ]]; then
+      PICKED="${AVAILABLE_CATS[$((CAT_INPUT - 1))]}"
+      SELECTED_CATS+=("$PICKED")
+      # Remove picked item from available list
+      unset 'AVAILABLE_CATS[$((CAT_INPUT - 1))]'
+      AVAILABLE_CATS=("${AVAILABLE_CATS[@]}")
+    else
+      # Typed a category directly (existing or new)
+      CAT_INPUT=$(echo "$CAT_INPUT" | tr ',' ' ' | tr -s ' ')
+      for c in $CAT_INPUT; do
+        SELECTED_CATS+=("$c")
+      done
+    fi
+    echo "  Selected so far: ${SELECTED_CATS[*]}"
+    read -rp "Add more? [y/N]: " MORE
+    if [[ ! "$MORE" =~ ^[Yy]$ ]]; then
+      break
+    fi
+  done
+else
+  read -rp "Categories (space-separated) []: " CAT_INPUT
+  CAT_INPUT=$(echo "$CAT_INPUT" | tr ',' ' ' | tr -s ' ')
+  for c in $CAT_INPUT; do
+    SELECTED_CATS+=("$c")
+  done
+fi
+
+CATEGORIES="${SELECTED_CATS[*]}"
+echo "Categories: $CATEGORIES"
+read -rp "Confirm? [Y/n]: " CONFIRM_CATS
+if [[ "$CONFIRM_CATS" =~ ^[Nn]$ ]]; then
+  read -rp "Categories (space-separated): " CATEGORIES
+  CATEGORIES=$(echo "$CATEGORIES" | tr ',' ' ' | tr -s ' ')
+fi
 read -rp "Image path (blank for none): " IMAGE
 
 CAPTION=""
