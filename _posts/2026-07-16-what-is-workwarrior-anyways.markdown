@@ -37,7 +37,8 @@ As of Summer 2026, Workwarrior is a robust command line application with extreme
 
 To read about Workwarrio's technical design checkout the "[Workwarrior Standard](https://github.com/babbworks/ww-standard)" repo where all project documetnation lives or visit [workwarrior.org](https://workwarrior.org). Below is the readme from the tool's repo located at [babbworks/workwarrior](https://github.com/babbworks/workwarrior). Send your feedback of any type to [workwarrior@babb.tel](mailto:workwarrior@babb.tel). <br>
 
---- <br>
+--- 
+<br>
 
 # Workwarrior README
 
