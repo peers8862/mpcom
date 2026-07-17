@@ -23,23 +23,23 @@ exchange or money tracking, work tracking, time logging, work journals, and list
 
 The task became simpler: match potential tools with these universal functions.
 
-For accounting there's ledger, hledger and beancount. I studied the ins and outs of each before landing on hledger. Though both ledger and beancount have things only they do well.
+For accounting there's ledger, hledger and beancount. I studied the ins and outs of each before landing on hledger. Ledger the original "plain text accounting" tool and beancount have things only they do well and need to be included any future product solution.
 
 Next, I discovered JRNL for notes and just ran with it. 
 
-Taskwarrior and Timewarrior are clearly best at what they do. Before too long though things can get a bit blurry as you try to triage through screens and screens of tasks and project tags. Taskwarrior has great annotaiton functions but few users are making routine use of them. It nailed down the essence of task tracking but to be more accessible it needed a few adjustments.
+Taskwarrior and Timewarrior are clearly best at what they do. Before too long though things can get a bit blurry as you try to triage through screens and screens of tasks. Taskwarrior has great annotaiton functions but few devs are making routine use of them. It nailed down the essence of task tracking but to be more accessible it needed a few adjustments.
 
-So I did what any [very novice] developer would do. Having discovered the magic of aliases I began manually editing my bashrc file as one giant config and orchestration file. By the time I was finished weaving together aliases and snippets of bash script, my bashrc file had over 1100 lines! Thankfully, I was still too green and excited about coding to see a problem with this approach. As with many Linux users, it's the first system file I ever edited so it served as a perfect scratchpad for sewing the tools together. Of course, what I had in practice was the equivalent of a hodge podge quilt whose patches were hanging on by threads. However, the common vocabulary and early commands that made the tools pull in the same direction was enough to glimpse a new horizon that I then charged for.
+So I did what any [very novice] developer would do. Having discovered the magic of aliases I began manually editing my bashrc file as one giant config and orchestration file. By the time I was finished weaving together aliases and snippets of bash script, my bashrc file had over 1100 lines! Thankfully, I was still too green and excited about coding to see a problem with this approach. As with many Linux users, it was the first system file I ever edited so it served as a perfect scratchpad for sewing the tools together. Of course, what I had in practice was the equivalent of a hodge podge quilt whose patches were hanging on by threads. However, the common vocabulary and early commands that made the tools pull in the same direction was enough to glimpse a new horizon that I then charged full speed for.
 
 I was starting to see opportunities to systematize the linkages between these tools by creating a "functions and extensions" architecture. The top 4-5 business tools that made the cut would be a core nucleus around a second ring of capabilities. After viewing all the quality Taskwarrior extensions developed by the developer community, and after experimenting with dozens of them, the opportunity to patch together an augmented family of functions anchored by hledger became plain to see.
 
 As of Summer 2026, Workwarrior is a robust command line application with extreme depth. Via command 'ww browser' it's also a very effective local browser application tool that routes all its main activity through the CLI that interacts with the core tools direclty. With these foundations in place, we used a simple 'rofi' solution to enable popups and overlays that give rich access to all functionality. With the popups the tool is ready to serve from the background where business leadership should be.
 
-To read about Workwarrio's technical design checkout the "[Workwarrior Standard](https://github.com/babbworks/ww-standard)" repo where all project documetnation lives or visit [workwarrior.org](https://workwarrior.org). Below is the readme from the tool's repo located at [babbworks/workwarrior](https://github.com/babbworks/workwarrior). Send your feedback of any type to [workwarrior@babb.tel](mailto:workwarrior@babb.tel).
+To read about Workwarrio's technical design checkout the "[Workwarrior Standard](https://github.com/babbworks/ww-standard)" repo where all project documetnation lives or visit [workwarrior.org](https://workwarrior.org). Below is the readme from the tool's repo located at [babbworks/workwarrior](https://github.com/babbworks/workwarrior). Send your feedback of any type to [workwarrior@babb.tel](mailto:workwarrior@babb.tel). <br>
 
----
+--- <br>
 
-# Workwarrior
+# Workwarrior README
 
 Workwarrior wraps five open-source tools — TaskWarrior, TimeWarrior, JRNL, Hledger, and Bugwarrior — into a single profile-based productivity system. Each profile is an isolated workspace: its own tasks, time tracking, journals, double-entry ledgers, and configuration. Switch contexts instantly. Nothing bleeds between profiles.
 
